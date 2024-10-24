@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "version": "1.0.0",
+    "version": "V2",
     "title": "Firefly API",
     "description": "REST API for Adobe Firefly for enterprise usage"
   },
@@ -12,15 +12,15 @@
   ],
   "security": [
     {
-        "X-ApiKey": [],
-        "Access token": []
+        "X-Api-Key": [],
+        "AccessToken": []
     }
 ],
   "paths": {
     "/v2/storage/image": {
       "post": {
         "summary": "Upload",
-        "description": "Upload source image or mask for Image-to-Image operations, such as  fill, expand. This api returns an identifier that is used to refer to uploaded content.",
+        "description": "Upload source image or mask for Image-to-Image operations, such as fill, expand. This api returns an identifier that is used to refer to uploaded content.",
         "operationId": "storageImageV2",
         "requestBody": {
           "content": {
@@ -43,7 +43,7 @@
               }
             }
           },
-          "description": "The PNG/JPEG/WEBP image to be stored (binary data)",
+          "description": "The PNG/JPEG/WEBP image to be stored (binary data). The maximum file size supported for uploading an image is 15MB.",
           "required": true
         },
         "responses": {
@@ -147,12 +147,12 @@
   },
   "components": {
     "securitySchemes": {
-      "X-ApiKey": {
+      "X-Api-Key": {
         "type": "apiKey",
         "name": "x-api-key",
         "in": "header"
       },
-      "Access token": {
+      "AccessToken": {
         "type": "http",
         "scheme": "bearer"
       }
@@ -427,7 +427,7 @@
         "properties": {
           "images": {
             "type": "array",
-            "description": "Array of objects containing asset ID",
+            "description": "Array of objects containing asset ID.",
             "items": {
               "allOf": [
                 {
@@ -445,7 +445,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "ID associated with the asset (generate this ID using the upload API). Pre-signed URLs will be supported in the future.",
+            "description": "ID associated with the asset. The id will be valid for 7 days from the date of creation. Pre-signed URLs will be supported in the future.",
             "examples": ["REPLACE WITH STRING ID GENERATED FROM UPLOAD IMAGE API"]
           }
         }
